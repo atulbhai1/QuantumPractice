@@ -5,3 +5,4 @@ operation Main() : Result{
     Reset(qubit);
     return result;
 }
+
