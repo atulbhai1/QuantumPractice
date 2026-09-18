@@ -3,6 +3,45 @@ import Std.Math.*;
 import Std.Convert.*;
 
 @EntryPoint()
+operation Sep_17_4(): Int {
+    use qubits = Qubit[3];
+    let otherQubit1 = qubits[0];
+    let otherQubit2 = qubits[1];
+    let otherQubit3 = qubits[2];
+    let P1 = 0.9;
+    let P2 = 0.9;
+    let P3 = 0.9;
+    Ry(2.0 * ArcCos(Sqrt(P1)), otherQubit1);
+    Ry(2.0 * ArcCos(Sqrt(P2)), otherQubit2);
+    Ry(2.0 * ArcCos(Sqrt(P3)), otherQubit3);
+    Message("The qubit register is in a skewed superposition: ");
+    DumpMachine();
+    mutable results = [];
+    for q in qubits {
+        Message(" ");
+        results += [M(q)];
+        DumpMachine();
+    }
+    ResetAll(qubits);
+    Message("Your random number is: ");
+    return ResultArrayAsInt(results);
+}
+
+operation Sep17_4() : Int {
+    use qubits = Qubit[3];
+    ApplyToEach(H, qubits);
+    Message("The qubit register is in a uniform superposition: ");
+    DumpMachine();
+    mutable results = [];
+    for q in qubits {
+        Message(" ");
+        results += [M(q)];
+        DumpMachine();
+    }
+    ResetAll(qubits);
+    Message("Your random number is: ");
+    return ResultArrayAsInt(results);
+}
 operation Sep17_3() : Int{
     use qubits = Qubit[3];
     ApplyToEach(H, qubits);
