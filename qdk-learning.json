@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "position": {
+    "courseId": "katas",
+    "unitId": "getting_started",
+    "activityId": "getting_started__welcome"
+  },
+  "completions": {},
+  "startedAt": "2026-09-18T01:34:28.443Z",
+  "pythonEnvironments": {},
+  "courseSelected": false
+}
