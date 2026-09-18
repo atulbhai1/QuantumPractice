@@ -69,17 +69,20 @@ operation Sep18_1(): (Result, Result){
 
 }
 
-operation QuantumINFOFASTER(): Result{//could we entangle qubits, force them away, and then force them into definite directions to make info move?
+operation QuantumINFOFASTER(): Result[]{//Proof that once superposition collapses, the entanglement goes away :(
     use (q1, q2) = (Qubit(), Qubit());
 
     H(q1);
     CNOT(q1, q2);
     
     DumpMachine();
-    let m1 = M(q1);
-    X(q1);
+    let m1 = M(q1);//measure q1, forcing q2 into definite state
+    let m2 = M(q2);//measure q2(check origninal value)
+    if (m1 == One){//Force q1 into 0
+        X(q1);
+    }
+    let m2_new = M(q2);//measure q2 again(check if anything changed)
     DumpMachine();
-    let m2 = M(q2);
     ResetAll([q1, q2]);
-    return m1;
+    return [m2, m2_new];
 }
